@@ -59,7 +59,7 @@ public class DbAdapter {
         return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
     }
 
-    //update a gps_main
+    //update a gps_main1
     public boolean updateGpsMain( long gpsmainID, String name, String address, String description, int latitude, int longitude) {
         ContentValues updateValues = createContentValues(name, address, description, latitude, longitude);
         return database.update(DATABASE_TABLE, updateValues, KEY_GPSMAINID + "=" + gpsmainID, null) > 0;
