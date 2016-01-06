@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.mydomain.cirleo.gpsticketstore.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="#000000">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:id="@+id/textView" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayoutGpsStatus"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:orientation="horizontal"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/linearLayoutClock"
+        android:layout_toStartOf="@+id/linearLayoutClock"
+        android:weightSum="1">
+        <View
+            android:id="@+id/viewGpsStatus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textViewGpsStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.07"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="8dp"
+            android:textSize="14sp"
+            android:singleLine="true" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayoutClock"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:weightSum="1">
+        <AnalogClock
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/analogClock"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayoutLabel"
+        android:orientation="vertical"
+        android:layout_width="150dp"
+        android:layout_height="210dp"
+        android:layout_below="@+id/linearLayoutGpsStatus"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/content_main_name_label"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textViewAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/content_main_address_label"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/content_main_description_label"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textViewGpsCoord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/content_main_gpsdata_label"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayoutEditText"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayoutGpsStatus"
+        android:layout_toRightOf="@+id/linearLayoutLabel"
+        android:layout_alignRight="@+id/linearLayoutClock"
+        android:layout_alignEnd="@+id/linearLayoutClock"
+        android:layout_marginTop="30dp">
+        <EditText
+            android:id="@+id/editTextName"
+            android:ems="12"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:background="#FFFFFF"
+            android:alpha="0.5"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:typeface="monospace"/>
+        <EditText
+            android:id="@+id/editTextAddress"
+            android:ems="12"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:background="#FFFFFF"
+            android:alpha="0.5"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:typeface="monospace"/>
+        <EditText
+            android:id="@+id/editTextDescription"
+            android:ems="12"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:background="#FFFFFF"
+            android:alpha="0.5"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:typeface="monospace"/>
+        <TextView
+            android:id="@+id/textViewGpsCoordRead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+</RelativeLayout>
+

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">GPS Ticket Store</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_upload">Upload Data</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="content_main_name_label">Nome : </string>
+    <string name="content_main_address_label">Indirizzo : </string>
+    <string name="content_main_description_label">Descrizione : </string>
+    <string name="content_main_gpsdata_label">Coordinate GPS : </string>
+    <string name="content_main_gpsstatus_err_label">"Waiting Gps Data...</string>
+    <string name="content_main_gpsstatus_ok_label">"Gps Status OK.</string>
+
+    <string name="alert_gps_status">GPS is turned off ... </string>
+    <string name="alert_gps_location">Location is not available ... </string>
+</resources>
+
+
