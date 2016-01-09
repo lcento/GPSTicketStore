@@ -11,6 +11,14 @@
     <string name="content_main_gpsdata_label">Coordinate GPS : </string>
     <string name="content_main_gpsstatus_err_label">"Waiting Gps Data...</string>
     <string name="content_main_gpsstatus_ok_label">"Gps Status OK.</string>
+    <string name="content_main_button_save">Salva</string>
+    <string name="content_main_validate_save_name">Errore - Campo Nome Vouto !!!</string>
+    <string name="content_main_validate_save_name_detail">Devi inserire un nome</string>
+    <string name="content_main_validate_save_address">Errore - Campo Indirizzo Vouto !!!</string>
+    <string name="content_main_validate_save_address_detail">Devi inserire un indirizzo</string>
+    <string name="content_main_validate_save_description">Errore - Campo Descrizione Vouto !!!</string>
+    <string name="content_main_validate_save_description_detail">Devi inserire una descrizione</string>
+    <string name="content_main_validate_save_ok">Dati salvati con successo !!!</string>
 
     <string name="alert_gps_status">GPS is turned off ... </string>
     <string name="alert_gps_location">Location is not available ... </string>

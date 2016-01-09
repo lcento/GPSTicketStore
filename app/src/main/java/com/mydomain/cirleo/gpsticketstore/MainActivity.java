@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -21,9 +22,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.RadioButton;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity implements GpsStatus.Listener {
     private double latitude;
@@ -37,6 +41,13 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     private View viewGpsStatus;
     private GpsStatus gpsStatus;
     private  Animation anim;
+    private Button saveButton;
+    private TextView textViewSave;
+    private EditText textName;
+    private EditText textAddress;
+    private EditText textDescription;
+    private DbAdapter dbHelper;
+    private Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,24 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         gpsCoord = (TextView) findViewById(R.id.textViewGpsCoordRead);
         gpsStatusLabel = (TextView) findViewById(R.id.textViewGpsStatus);
 
+        textName = (EditText) findViewById(R.id.editTextName);
+        textAddress = (EditText) findViewById(R.id.editTextAddress);
+        textDescription = (EditText) findViewById(R.id.editTextDescription);
+        textViewSave = (TextView) findViewById(R.id.textViewSave);
+
+        dbHelper = new DbAdapter(this);
+
+        saveButton = (Button)findViewById(R.id.buttonSave);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if ( validateGpsData() ) {
+                    saveGpsData();
+                    //finish();
+                }
+            }
+        });
+
         anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(500); //You can manage the time of the blink with this parameter
         anim.setStartOffset(20);
@@ -77,6 +106,59 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
 
     }
 
+    private void saveGpsData() {
+        try {
+            dbHelper.open();
+            dbHelper.createGpsMain(textName.toString(), textAddress.toString(), textDescription.toString(), latitude, longitude);
+
+            dbHelper.close();
+
+            Toast.makeText(this, getResources().getString(R.string.content_main_validate_save_ok), Toast.LENGTH_SHORT).show();
+            // clear form view
+            clearView();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        //TODO
+    }
+
+    private void clearView() {
+        textName.getText().clear();
+        textAddress.getText().clear();
+        textDescription.getText().clear();
+        textViewSave.setText("");
+    }
+
+    private boolean validateGpsData() {
+        String sName = textName.getText().toString();
+        String sAddress = textAddress.getText().toString();
+        String sDescription = textDescription.getText().toString();
+
+        if (sName.matches("")) {
+            textViewSave.setText(getResources().getString(R.string.content_main_validate_save_name));
+            Toast.makeText(this, getResources().getString(R.string.content_main_validate_save_name_detail), Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if (sAddress.matches("")) {
+            textViewSave.setText(getResources().getString(R.string.content_main_validate_save_address));
+            Toast.makeText(this, getResources().getString(R.string.content_main_validate_save_address_detail), Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if (sDescription.matches("")) {
+            textViewSave.setText(getResources().getString(R.string.content_main_validate_save_description));
+            Toast.makeText(this, getResources().getString(R.string.content_main_validate_save_description_detail), Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        return true;
+    }
+
     private void setGpsCoord() {
         // try to read gps coords
         if (readGpsCoord()) {
@@ -90,6 +172,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     }
 
     private void setErrGpsStatus() {
+        saveButton.setEnabled(false);
         AlertMessage("Alert Message", getResources().getString(R.string.alert_gps_location));
         gpsStatusLabel.setText(getResources().getString(R.string.content_main_gpsstatus_err_label));
         gpsStatusLabel.startAnimation(anim);
@@ -98,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     }
 
     private void setOkGpsStatus() {
+        saveButton.setEnabled(true);
         gpsStatusLabel.setText(getResources().getString(R.string.content_main_gpsstatus_ok_label));
         gpsStatusLabel.clearAnimation();
         viewGpsStatus.setBackgroundResource(R.drawable.circle_green);
@@ -224,8 +308,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
         //noinspection SimplifiableIfStatement
         switch(item.getItemId()) {
             case R.id.menu_upload:
-                //Intent intent_upload = new Intent(this, UploadData.class);
-                //this.startActivity(intent_upload);
+                Intent intent_upload = new Intent(this, UploadActivity.class);
+                this.startActivity(intent_upload);
                 break;
             case R.id.menu_settings:
                 //Intent intent_settings = new Intent(this, SettingsApp.class);

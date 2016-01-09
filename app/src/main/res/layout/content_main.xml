@@ -12,22 +12,17 @@
     tools:context="com.mydomain.cirleo.gpsticketstore.MainActivity"
     tools:showIn="@layout/activity_main"
     android:background="#000000">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linearLayoutGpsStatus"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:orientation="horizontal"
-        android:layout_alignTop="@+id/textView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_toLeftOf="@+id/linearLayoutClock"
         android:layout_toStartOf="@+id/linearLayoutClock"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginTop="20dp">
         <View
             android:id="@+id/viewGpsStatus"
             android:layout_width="20dp"
@@ -45,7 +40,8 @@
             android:gravity="center_horizontal"
             android:layout_marginLeft="8dp"
             android:textSize="14sp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linearLayoutClock"
@@ -55,7 +51,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_marginTop="20dp">
         <AnalogClock
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,9 +120,10 @@
             android:layout_marginTop="23dp"
             android:background="#FFFFFF"
             android:alpha="0.5"
-            android:gravity="center"
+            android:gravity="left"
             android:textStyle="bold"
-            android:typeface="monospace"/>
+            android:typeface="monospace"
+            android:textAlignment="gravity" />
         <EditText
             android:id="@+id/editTextAddress"
             android:ems="12"
@@ -135,9 +133,10 @@
             android:layout_marginTop="23dp"
             android:background="#FFFFFF"
             android:alpha="0.5"
-            android:gravity="center"
+            android:gravity="left"
             android:textStyle="bold"
-            android:typeface="monospace"/>
+            android:typeface="monospace"
+            android:textAlignment="gravity"/>
         <EditText
             android:id="@+id/editTextDescription"
             android:ems="12"
@@ -147,15 +146,42 @@
             android:layout_marginTop="23dp"
             android:background="#FFFFFF"
             android:alpha="0.5"
-            android:gravity="center"
+            android:gravity="left"
             android:textStyle="bold"
-            android:typeface="monospace"/>
+            android:typeface="monospace"
+            android:textAlignment="gravity"/>
         <TextView
             android:id="@+id/textViewGpsCoordRead"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
             android:textColor="#FFFFFF" />
+    </LinearLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayoutButtonSave"
+        android:layout_below="@+id/linearLayoutLabel"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp">
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/content_main_button_save"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_below="@+id/buttonSave"
+            android:id="@+id/textViewSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#F70808"
+            android:textStyle="bold"
+            android:textAlignment="gravity"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="70dp" />
     </LinearLayout>
 </RelativeLayout>
 

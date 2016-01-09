@@ -42,7 +42,7 @@ public class DbAdapter {
         dbHelper.close();
     }
 
-    private ContentValues createContentValues(String name, String address, String description, int latitude, int longitude) {
+    private ContentValues createContentValues(String name, String address, String description, double latitude, double longitude) {
         ContentValues values = new ContentValues();
         values.put( KEY_NAME, name );
         values.put( KEY_ADDRESS, address );
@@ -54,13 +54,13 @@ public class DbAdapter {
     }
 
     // create a gps_main
-    public long createGpsMain(String name, String address, String description, int latitude, int longitude) {
+    public long createGpsMain(String name, String address, String description, double latitude, double longitude) {
         ContentValues initialValues = createContentValues(name, address, description, latitude, longitude);
         return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
     }
 
     //update a gps_main1
-    public boolean updateGpsMain( long gpsmainID, String name, String address, String description, int latitude, int longitude) {
+    public boolean updateGpsMain( long gpsmainID, String name, String address, String description, double latitude, double longitude) {
         ContentValues updateValues = createContentValues(name, address, description, latitude, longitude);
         return database.update(DATABASE_TABLE, updateValues, KEY_GPSMAINID + "=" + gpsmainID, null) > 0;
     }
