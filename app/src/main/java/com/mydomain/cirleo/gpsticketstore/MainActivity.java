@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     private String provider;
     private View viewGpsStatus;
     private GpsStatus gpsStatus;
-    private  Animation anim;
+    private Animation anim;
     private Button saveButton;
     private TextView textViewSave;
     private EditText textName;
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
             public void onClick(View v) {
                 if ( validateGpsData() ) {
                     saveGpsData();
-                    //finish();
                 }
             }
         });
@@ -109,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements GpsStatus.Listene
     private void saveGpsData() {
         try {
             dbHelper.open();
-            dbHelper.createGpsMain(textName.toString(), textAddress.toString(), textDescription.toString(), latitude, longitude);
+            //dbHelper.deleteGpsMain();
+            dbHelper.createGpsMain(textName.getText().toString(), textAddress.getText().toString(), textDescription.getText().toString(), latitude, longitude);
 
             dbHelper.close();
 

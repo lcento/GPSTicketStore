@@ -70,13 +70,18 @@ public class DbAdapter {
         return database.delete(DATABASE_TABLE, KEY_GPSMAINID + "=" + gpsmainID, null) > 0;
     }
 
+    //delete a gps_main
+    public boolean deleteGpsMain() {
+        return database.delete(DATABASE_TABLE, null, null) > 0;
+    }
+
     //fetch all contacts
-    public Cursor fetchAllContacts() {
+    public Cursor fetchAllGpsData() {
         return database.query(DATABASE_TABLE, new String[] { KEY_GPSMAINID, KEY_NAME, KEY_ADDRESS, KEY_DESCRIPTION, KEY_LATITUDE, KEY_LONGITUDE}, null, null, null, null, null, null);
     }
 
     //fetch gps_main filter by a string
-    public Cursor fetchContactsByFilter(String filter) {
+    public Cursor fetchGpsDataByFilter(String filter) {
         Cursor mCursor = database.query(true, DATABASE_TABLE, new String[] {
                         KEY_GPSMAINID, KEY_NAME, KEY_ADDRESS, KEY_DESCRIPTION, KEY_LATITUDE, KEY_LONGITUDE },
                 KEY_NAME + " like '%"+ filter + "%'", null, null, null, null, null, null);

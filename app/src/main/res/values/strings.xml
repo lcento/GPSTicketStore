@@ -20,6 +20,9 @@
     <string name="content_main_validate_save_description_detail">Devi inserire una descrizione</string>
     <string name="content_main_validate_save_ok">Dati salvati con successo !!!</string>
 
+    <string name="content_upload_header">Lista Dati Gps</string>
+    <string name="content_upload_button_sent">Invio Dati</string>
+
     <string name="alert_gps_status">GPS is turned off ... </string>
     <string name="alert_gps_location">Location is not available ... </string>
 </resources>
